@@ -17,36 +17,63 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_add.svg
   SvgGenImage get iconAdd => const SvgGenImage('assets/icons/icon_add.svg');
 
-  /// File path: assets/icons/icon_find.svg
-  SvgGenImage get iconFind => const SvgGenImage('assets/icons/icon_find.svg');
-
-  /// File path: assets/icons/icon_find.svg
-  SvgGenImage get icon_community =>
+  /// File path: assets/icons/icon_community.svg
+  SvgGenImage get iconCommunity =>
       const SvgGenImage('assets/icons/icon_community.svg');
 
-  /// File path: assets/icons/icon_find.svg
-  SvgGenImage get icon_crypto_news =>
+  /// File path: assets/icons/icon_crypto_news.svg
+  SvgGenImage get iconCryptoNews =>
       const SvgGenImage('assets/icons/icon_crypto_news.svg');
 
   /// File path: assets/icons/icon_find.svg
-  SvgGenImage get icon_market =>
+  SvgGenImage get iconFind => const SvgGenImage('assets/icons/icon_find.svg');
+
+  /// File path: assets/icons/icon_market.svg
+  SvgGenImage get iconMarket =>
       const SvgGenImage('assets/icons/icon_market.svg');
 
-  /// File path: assets/icons/icon_find.svg
-  SvgGenImage get icon_notifications =>
+  /// File path: assets/icons/icon_more.svg
+  SvgGenImage get iconMore => const SvgGenImage('assets/icons/icon_more.svg');
+
+  /// File path: assets/icons/icon_notifications.svg
+  SvgGenImage get iconNotifications =>
       const SvgGenImage('assets/icons/icon_notifications.svg');
 
-  /// File path: assets/icons/icon_find.svg
-  SvgGenImage get icon_more => const SvgGenImage('assets/icons/icon_more.svg');
+  /// List of all assets
+  List<SvgGenImage> get values => [
+        iconAdd,
+        iconCommunity,
+        iconCryptoNews,
+        iconFind,
+        iconMarket,
+        iconMore,
+        iconNotifications,
+      ];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/image_avatar.svg
+  SvgGenImage get imageAvatar =>
+      const SvgGenImage('assets/images/image_avatar.svg');
+
+  /// File path: assets/images/image_post_1.svg
+  SvgGenImage get imagePost1 =>
+      const SvgGenImage('assets/images/image_post_1.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [iconAdd, iconFind];
+  List<SvgGenImage> get values => [
+        imageAvatar,
+        imagePost1,
+      ];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

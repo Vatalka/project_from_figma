@@ -29,60 +29,48 @@ class MyHomePage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 54,
           titleSpacing: 0,
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Community',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(14, 19, 24, 1),
-                  ),
+          titleTextStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Color.fromRGBO(14, 19, 24, 1),
+          ),
+          toolbarHeight: 64,
+          actions: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(17, 17, 1, 17),
+                  child: Assets.icons.iconAdd.svg(),
                 ),
-              ),
-              Row(
-                children: [
-                  Assets.icons.iconAdd.svg(),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Assets.icons.iconFind.svg(),
-                  ),
-                ],
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Assets.icons.iconFind.svg(),
+                ),
+              ],
+            ),
+          ],
+          title: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text('Community'),
           ),
           bottom: const TabBar(
-            indicatorColor: Color.fromRGBO(15, 16, 20, 1),
-            indicatorSize: TabBarIndicatorSize.tab,
-            dividerColor: Color.fromRGBO(214, 214, 214, 1),
+            labelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             labelColor: Color.fromRGBO(14, 19, 24, 1),
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorColor: Color.fromRGBO(15, 16, 20, 1),
+            dividerColor: Color.fromRGBO(214, 214, 214, 1),
             unselectedLabelColor: Color.fromRGBO(115, 116, 123, 1),
+            isScrollable: true,
+            padding: EdgeInsets.only(right: 400),
             tabs: <Widget>[
               Tab(
                 height: 44,
-                child: Text(
-                  'Explore',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                child: Text('Explore'),
               ),
               Tab(
                 height: 44,
-                child: Text(
-                  'Following',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                child: Text('Following'),
               ),
             ],
           ),
@@ -99,19 +87,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class MyDivider extends StatelessWidget {
-  const MyDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      height: 8,
-      thickness: 8,
-      color: Color.fromRGBO(240, 240, 240, 1),
-    );
-  }
-}
-
 class ViewExplore extends StatelessWidget {
   const ViewExplore({super.key});
 
@@ -121,34 +96,73 @@ class ViewExplore extends StatelessWidget {
       children: [
         MyDivider(),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    '🔥 Hot today',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(14, 19, 24, 1),
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                '🔥 Hot today',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromRGBO(14, 19, 24, 1),
                 ),
-              ],
+              ),
             ),
-            Row(
-              children: [
-                MyCard(tagName: '#Trading'),
-                MyCard(tagName: '#PlayToEarn'),
-                MyCard(tagName: '#Defi'),
-                MyCard(tagName: '#Trade'),
-              ],
+            SizedBox(
+              height: 64,
+              width: 500,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.fromLTRB(16, 1, 8, 16),
+                children: <Widget>[
+                  MyCard(tagName: '#Trading'),
+                  MyCard(tagName: '#PlayToEarn'),
+                  MyCard(tagName: '#Defi'),
+                  MyCard(tagName: '#TradeMarket'),
+                  MyCard(tagName: '#PlayToEarn'),
+                  MyCard(tagName: '#Defi'),
+                ],
+              ),
             ),
           ],
         ),
         MyDivider(),
+        SizedBox(
+          height: 62,
+          width: 360,
+          child: Row(
+            children: [
+              Assets.images.imageAvatar.svg(),
+              Text("What's goind on?"),
+            ],
+          ),
+        ),
+        MyDivider(),
+        Assets.images.imagePost1.svg(),
       ],
+    );
+  }
+}
+
+class ViewFallowing extends StatelessWidget {
+  const ViewFallowing({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Placeholder();
+  }
+}
+
+class MyDivider extends StatelessWidget {
+  const MyDivider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      height: 8,
+      thickness: 8,
+      color: Color.fromRGBO(240, 240, 240, 1),
     );
   }
 }
@@ -171,25 +185,13 @@ class MyCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(24),
       ),
-      child: SizedBox(
-        height: 36,
-        width: 90,
-        child: Center(
-            child: Text(
-          tagName,
-          style: styleTagText,
-        )),
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+          child: Text(tagName, style: styleTagText),
+        ),
       ),
     );
-  }
-}
-
-class ViewFallowing extends StatelessWidget {
-  const ViewFallowing({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Placeholder();
   }
 }
 
@@ -198,63 +200,63 @@ class MyBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final styleBottomBarText = TextStyle(
-      fontSize: 11,
-      fontWeight: FontWeight.w400,
-    );
+    final textStyleBottomBar =
+        TextStyle(fontSize: 11, fontWeight: FontWeight.w400);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Divider(
-          height: 0,
-          color: Color.fromRGBO(214, 214, 214, 1),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(7.5),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Assets.icons.icon_community.svg(),
-                  Text('Community', style: styleBottomBarText),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Assets.icons.icon_crypto_news.svg(),
-                  Text('Crypto news', style: styleBottomBarText),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Assets.icons.icon_market.svg(),
-                  Text('Market', style: styleBottomBarText),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Assets.icons.icon_notifications.svg(),
-                  Text('Notifications', style: styleBottomBarText),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Assets.icons.icon_more.svg(),
-                  Text('More', style: styleBottomBarText),
-                ],
-              ),
-            ],
+    return SizedBox(
+      height: 60,
+      child: Column(
+        children: [
+          Divider(
+            height: 0,
+            color: Color.fromRGBO(214, 214, 214, 1),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Assets.icons.iconCommunity.svg(),
+                    Text('Community', style: textStyleBottomBar),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Assets.icons.iconCryptoNews.svg(),
+                    Text('Crypto news', style: textStyleBottomBar),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Assets.icons.iconMarket.svg(),
+                    Text('Market', style: textStyleBottomBar),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Assets.icons.iconNotifications.svg(),
+                    Text('Notifications', style: textStyleBottomBar),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Assets.icons.iconMore.svg(),
+                    Text('More', style: textStyleBottomBar),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
