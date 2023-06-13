@@ -17,20 +17,47 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_add.svg
   SvgGenImage get iconAdd => const SvgGenImage('assets/icons/icon_add.svg');
 
+  /// File path: assets/icons/icon_arrow.svg
+  SvgGenImage get iconArrow => const SvgGenImage('assets/icons/icon_arrow.svg');
+
+  /// File path: assets/icons/icon_chat.svg
+  SvgGenImage get iconChat => const SvgGenImage('assets/icons/icon_chat.svg');
+
   /// File path: assets/icons/icon_community.svg
   SvgGenImage get iconCommunity =>
       const SvgGenImage('assets/icons/icon_community.svg');
+
+  /// File path: assets/icons/icon_correct.svg
+  SvgGenImage get iconCorrect =>
+      const SvgGenImage('assets/icons/icon_correct.svg');
 
   /// File path: assets/icons/icon_crypto_news.svg
   SvgGenImage get iconCryptoNews =>
       const SvgGenImage('assets/icons/icon_crypto_news.svg');
 
+  /// File path: assets/icons/icon_dot.svg
+  SvgGenImage get iconDot => const SvgGenImage('assets/icons/icon_dot.svg');
+
+  /// File path: assets/icons/icon_dropdown.svg
+  SvgGenImage get iconDropdown =>
+      const SvgGenImage('assets/icons/icon_dropdown.svg');
+
   /// File path: assets/icons/icon_find.svg
   SvgGenImage get iconFind => const SvgGenImage('assets/icons/icon_find.svg');
+
+  /// File path: assets/icons/icon_like.svg
+  SvgGenImage get iconLike => const SvgGenImage('assets/icons/icon_like.svg');
+
+  /// File path: assets/icons/icon_like_on.svg
+  SvgGenImage get iconLikeOn =>
+      const SvgGenImage('assets/icons/icon_like_on.svg');
 
   /// File path: assets/icons/icon_market.svg
   SvgGenImage get iconMarket =>
       const SvgGenImage('assets/icons/icon_market.svg');
+
+  /// File path: assets/icons/icon_menu.svg
+  SvgGenImage get iconMenu => const SvgGenImage('assets/icons/icon_menu.svg');
 
   /// File path: assets/icons/icon_more.svg
   SvgGenImage get iconMore => const SvgGenImage('assets/icons/icon_more.svg');
@@ -39,33 +66,60 @@ class $AssetsIconsGen {
   SvgGenImage get iconNotifications =>
       const SvgGenImage('assets/icons/icon_notifications.svg');
 
+  /// File path: assets/icons/icon_online.svg
+  SvgGenImage get iconOnline =>
+      const SvgGenImage('assets/icons/icon_online.svg');
+
+  /// File path: assets/icons/icon_world.svg
+  SvgGenImage get iconWorld => const SvgGenImage('assets/icons/icon_world.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         iconAdd,
+        iconArrow,
+        iconChat,
         iconCommunity,
+        iconCorrect,
         iconCryptoNews,
+        iconDot,
+        iconDropdown,
         iconFind,
+        iconLike,
+        iconLikeOn,
         iconMarket,
+        iconMenu,
         iconMore,
         iconNotifications,
+        iconOnline,
+        iconWorld,
       ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/image_avatar.svg
-  SvgGenImage get imageAvatar =>
-      const SvgGenImage('assets/images/image_avatar.svg');
+  /// File path: assets/images/Avatar_38x38.jpg
+  AssetGenImage get avatar38x38 =>
+      const AssetGenImage('assets/images/Avatar_38x38.jpg');
 
-  /// File path: assets/images/image_post_1.svg
-  SvgGenImage get imagePost1 =>
-      const SvgGenImage('assets/images/image_post_1.svg');
+  /// File path: assets/images/Avatar_40x40.jpg
+  AssetGenImage get avatar40x40 =>
+      const AssetGenImage('assets/images/Avatar_40x40.jpg');
+
+  /// File path: assets/images/Image_post_1.jpg
+  AssetGenImage get imagePost1 =>
+      const AssetGenImage('assets/images/Image_post_1.jpg');
+
+  /// File path: assets/images/Image_post_2.jpg
+  AssetGenImage get imagePost2 =>
+      const AssetGenImage('assets/images/Image_post_2.jpg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [
-        imageAvatar,
+  List<AssetGenImage> get values => [
+        avatar38x38,
+        avatar40x40,
         imagePost1,
+        imagePost2,
       ];
 }
 

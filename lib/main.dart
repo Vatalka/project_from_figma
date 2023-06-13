@@ -122,24 +122,121 @@ class ViewExplore extends StatelessWidget {
                   MyCard(tagName: '#TradeMarket'),
                   MyCard(tagName: '#PlayToEarn'),
                   MyCard(tagName: '#Defi'),
+                  MyCard(tagName: '#TradeMarket'),
                 ],
               ),
             ),
           ],
         ),
         MyDivider(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 7, 7, 7),
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              icon: Assets.images.avatar38x38.image(),
+              hintText: "What's goind on?",
+            ),
+          ),
+        ),
+        MyDivider(),
         SizedBox(
-          height: 62,
-          width: 360,
-          child: Row(
+          height: 570,
+          child: Column(
             children: [
-              Assets.images.imageAvatar.svg(),
-              Text("What's goind on?"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Stack(
+                          children: <Widget>[
+                            Assets.images.avatar40x40.image(),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Assets.icons.iconOnline.svg(),
+                            )
+                          ],
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Felix One',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(14, 19, 24, 1),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Assets.icons.iconCorrect.svg(),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '3 min ago',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(115, 116, 123, 1),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Assets.icons.iconDot.svg(),
+                              ),
+                              Assets.icons.iconWorld.svg(),
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Assets.icons.iconDropdown.svg(),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(18, 24, 18, 18),
+                    child: Assets.icons.iconMenu.svg(),
+                  ),
+                ],
+              ),
+              Text(
+                "The beast is back in town 🔥 In NY from May 23-28."
+                "🚀 There are few tickets left, so hurry up!"
+                "\nTickets: ",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromRGBO(14, 19, 24, 1),
+                ),
+              ),
+              Text(
+                "https://tradersoftheyear.com/conference_may2021",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromRGBO(129, 180, 0, 1),
+                ),
+              ),
+              Assets.images.imagePost1.image(),
             ],
           ),
         ),
         MyDivider(),
-        Assets.images.imagePost1.svg(),
       ],
     );
   }
@@ -181,6 +278,7 @@ class MyCard extends StatelessWidget {
     );
 
     return Card(
+      elevation: 0,
       color: Color.fromRGBO(240, 240, 240, 1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(24),
