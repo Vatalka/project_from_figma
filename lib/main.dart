@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
             fontWeight: FontWeight.w500,
             color: Color.fromRGBO(14, 19, 24, 1),
           ),
-          toolbarHeight: 64,
+          toolbarHeight: 56,
           actions: [
             Row(
               children: [
@@ -77,8 +77,8 @@ class MyHomePage extends StatelessWidget {
         ),
         body: const TabBarView(
           children: <Widget>[
-            ViewExplore(),
-            ViewFallowing(),
+            ViewTabExplore(),
+            ViewTabFallowing(),
           ],
         ),
         bottomNavigationBar: MyBottomNavigationBar(),
@@ -87,163 +87,370 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class ViewExplore extends StatelessWidget {
-  const ViewExplore({super.key});
+class HeaderOfExplore extends StatelessWidget {
+  const HeaderOfExplore({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 375,
+      height: 104,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+            child: Text(
+              '🔥 Hot today',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(14, 19, 24, 1),
+              ),
+            ),
+          ),
+          Flexible(
+            child: ListView(
+              padding: EdgeInsets.only(left: 12, bottom: 12),
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                TagCard(tagName: '#Trading'),
+                TagCard(tagName: '#PlayToEarn'),
+                TagCard(tagName: '#Defi'),
+                TagCard(tagName: '#TradeMarket'),
+                TagCard(tagName: '#Trading'),
+                TagCard(tagName: '#PlayToEarn'),
+                TagCard(tagName: '#Defi'),
+                TagCard(tagName: '#TradeMarket'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class UnderHeaderOfExplore extends StatelessWidget {
+  const UnderHeaderOfExplore({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 360,
+      height: 54,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+            child: Assets.images.avatar38x38.image(),
+          ),
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "What's goind on?",
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NameForPost extends StatelessWidget {
+  const NameForPost({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 16, 24, 0),
+      child: SizedBox(
+        width: 320,
+        height: 40,
+        child: Row(
+          children: [
+            Stack(
+              children: <Widget>[
+                Assets.images.avatar40x40.image(),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Assets.icons.iconOnline.svg(),
+                )
+              ],
+            ),
+            SizedBox(width: 8, height: 40),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                      child: Text(
+                        'Felix One',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromRGBO(14, 19, 24, 1),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 4, height: 20),
+                    Assets.icons.iconCorrect.svg(),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '3 min ago',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromRGBO(115, 116, 123, 1),
+                      ),
+                    ),
+                    SizedBox(width: 4, height: 20),
+                    Assets.icons.iconDot.svg(),
+                    SizedBox(width: 4.67, height: 20),
+                    Assets.icons.iconWorld.svg(),
+                    SizedBox(width: 6.17, height: 20),
+                    Assets.icons.iconDropdown.svg(),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomPostBar extends StatelessWidget {
+  const BottomPostBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 360,
+      height: 96,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 0, 12),
+                child: SizedBox(
+                  height: 20,
+                  child: Row(
+                    children: [
+                      Assets.icons.iconLikeOn.svg(),
+                      SizedBox(width: 4.67, height: 15),
+                      Text('53'),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 16, 16, 12),
+                child: SizedBox(
+                  height: 20,
+                  child: Row(
+                    children: [
+                      Text('0 comments'),
+                      SizedBox(width: 8, height: 15),
+                      Text('4 share'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Divider(
+            height: 0,
+            indent: 16,
+            endIndent: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
+                  children: [
+                    Assets.icons.iconLike.svg(),
+                    SizedBox(width: 4.83, height: 15),
+                    Text('Like'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Assets.icons.iconChat.svg(),
+                    SizedBox(width: 7.33, height: 15),
+                    Text('Comment'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Assets.icons.iconArrow.svg(),
+                    SizedBox(width: 5.23, height: 15),
+                    Text('Share'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FirstPost extends StatelessWidget {
+  const FirstPost({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SizedBox(
+          width: 360,
+          child: Column(
+            children: [
+              NameForPost(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 1, 12),
+                child: SizedBox(
+                  width: 343,
+                  height: 120,
+                  child: Text.rich(
+                    TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text:
+                              "The beast is back in town 🔥 In NY from May 23-28."
+                              "🚀 There are few tickets left, so hurry up!\nTickets:",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromRGBO(14, 19, 24, 1),
+                          ),
+                        ),
+                        TextSpan(
+                          text:
+                              "\r https://tradersoftheyear.com/conference_may2021",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromRGBO(129, 180, 0, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Assets.images.imagePost1.image(),
+              BottomPostBar(),
+            ],
+          ),
+        ),
+        Positioned(
+          right: 18.5,
+          top: 24.33,
+          child: Assets.icons.iconMenu.svg(),
+        )
+      ],
+    );
+  }
+}
+
+class SecondPost extends StatelessWidget {
+  const SecondPost({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SizedBox(
+          width: 360,
+          child: Column(
+            children: [
+              NameForPost(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                child: SizedBox(
+                  width: 328,
+                  height: 48,
+                  child: Text.rich(
+                    TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "The The beast is back in town 🔥 😎✌\n",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromRGBO(14, 19, 24, 1),
+                          ),
+                        ),
+                        TextSpan(
+                          text: "#test #happymorning",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromRGBO(129, 180, 0, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Assets.images.imagePost2.image(),
+              BottomPostBar(),
+            ],
+          ),
+        ),
+        Positioned(
+          right: 18.5,
+          top: 24.33,
+          child: Assets.icons.iconMenu.svg(),
+        )
+      ],
+    );
+  }
+}
+
+class ViewTabExplore extends StatelessWidget {
+  const ViewTabExplore({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         MyDivider(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                '🔥 Hot today',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(14, 19, 24, 1),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 64,
-              width: 500,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.fromLTRB(16, 1, 8, 16),
-                children: <Widget>[
-                  MyCard(tagName: '#Trading'),
-                  MyCard(tagName: '#PlayToEarn'),
-                  MyCard(tagName: '#Defi'),
-                  MyCard(tagName: '#TradeMarket'),
-                  MyCard(tagName: '#PlayToEarn'),
-                  MyCard(tagName: '#Defi'),
-                  MyCard(tagName: '#TradeMarket'),
-                ],
-              ),
-            ),
-          ],
-        ),
+        HeaderOfExplore(),
         MyDivider(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 7, 7, 7),
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              icon: Assets.images.avatar38x38.image(),
-              hintText: "What's goind on?",
-            ),
-          ),
-        ),
+        UnderHeaderOfExplore(),
         MyDivider(),
-        SizedBox(
-          height: 570,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Assets.images.avatar40x40.image(),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: Assets.icons.iconOnline.svg(),
-                            )
-                          ],
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'Felix One',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(14, 19, 24, 1),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Assets.icons.iconCorrect.svg(),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '3 min ago',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(115, 116, 123, 1),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Assets.icons.iconDot.svg(),
-                              ),
-                              Assets.icons.iconWorld.svg(),
-                              Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child: Assets.icons.iconDropdown.svg(),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(18, 24, 18, 18),
-                    child: Assets.icons.iconMenu.svg(),
-                  ),
-                ],
-              ),
-              Text(
-                "The beast is back in town 🔥 In NY from May 23-28."
-                "🚀 There are few tickets left, so hurry up!"
-                "\nTickets: ",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(14, 19, 24, 1),
-                ),
-              ),
-              Text(
-                "https://tradersoftheyear.com/conference_may2021",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(129, 180, 0, 1),
-                ),
-              ),
-              Assets.images.imagePost1.image(),
-            ],
-          ),
-        ),
+        FirstPost(),
         MyDivider(),
+        SecondPost(),
       ],
     );
   }
 }
 
-class ViewFallowing extends StatelessWidget {
-  const ViewFallowing({super.key});
+class ViewTabFallowing extends StatelessWidget {
+  const ViewTabFallowing({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -264,14 +471,14 @@ class MyDivider extends StatelessWidget {
   }
 }
 
-class MyCard extends StatelessWidget {
-  const MyCard({super.key, required this.tagName});
+class TagCard extends StatelessWidget {
+  const TagCard({super.key, required this.tagName});
 
   final String tagName;
 
   @override
   Widget build(BuildContext context) {
-    final styleTagText = TextStyle(
+    final tagStyle = TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: Color.fromRGBO(14, 19, 24, 1),
@@ -283,11 +490,10 @@ class MyCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(24),
       ),
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-          child: Text(tagName, style: styleTagText),
-        ),
+      margin: EdgeInsets.only(left: 4, right: 4),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: Text(tagName, style: tagStyle),
       ),
     );
   }
@@ -298,11 +504,21 @@ class MyBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyleBottomBar =
-        TextStyle(fontSize: 11, fontWeight: FontWeight.w400);
+    final inactiveStyle = TextStyle(
+      fontSize: 11,
+      fontWeight: FontWeight.w400,
+      color: Color.fromRGBO(115, 116, 123, 1),
+    );
+
+    final activeStyle = TextStyle(
+      fontSize: 11,
+      fontWeight: FontWeight.w400,
+      color: Color.fromRGBO(14, 19, 24, 1),
+    );
 
     return SizedBox(
-      height: 60,
+      width: 360,
+      height: 56,
       child: Column(
         children: [
           Divider(
@@ -310,44 +526,39 @@ class MyBottomNavigationBar extends StatelessWidget {
             color: Color.fromRGBO(214, 214, 214, 1),
           ),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Assets.icons.iconCommunity.svg(),
-                    Text('Community', style: textStyleBottomBar),
+                    Text('Community', style: activeStyle),
                   ],
                 ),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Assets.icons.iconCryptoNews.svg(),
-                    Text('Crypto news', style: textStyleBottomBar),
+                    Text('Crypto news', style: inactiveStyle),
                   ],
                 ),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Assets.icons.iconMarket.svg(),
-                    Text('Market', style: textStyleBottomBar),
+                    Text('Market', style: inactiveStyle),
                   ],
                 ),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Assets.icons.iconNotifications.svg(),
-                    Text('Notifications', style: textStyleBottomBar),
+                    Text('Notifications', style: inactiveStyle),
                   ],
                 ),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Assets.icons.iconMore.svg(),
-                    Text('More', style: textStyleBottomBar),
+                    Text('More', style: inactiveStyle),
                   ],
                 ),
               ],
