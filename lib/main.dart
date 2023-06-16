@@ -62,7 +62,7 @@ class MyHomePage extends StatelessWidget {
             dividerColor: Color.fromRGBO(214, 214, 214, 1),
             unselectedLabelColor: Color.fromRGBO(115, 116, 123, 1),
             isScrollable: true,
-            padding: EdgeInsets.only(right: 400),
+            padding: EdgeInsets.only(right: 200),
             tabs: <Widget>[
               Tab(
                 height: 44,
@@ -423,7 +423,7 @@ class SecondPost extends StatelessWidget {
           right: 18.5,
           top: 24.33,
           child: Assets.icons.iconMenu.svg(),
-        )
+        ),
       ],
     );
   }
@@ -436,14 +436,27 @@ class ViewTabExplore extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        PostHeader(),
+        FirstPost(),
+        MyDivider(),
+        SecondPost(),
+      ],
+    );
+  }
+}
+
+class PostHeader extends StatelessWidget {
+  const PostHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         MyDivider(),
         HeaderOfExplore(),
         MyDivider(),
         UnderHeaderOfExplore(),
         MyDivider(),
-        FirstPost(),
-        MyDivider(),
-        SecondPost(),
       ],
     );
   }
@@ -454,7 +467,21 @@ class ViewTabFallowing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return CustomScrollView(
+      slivers: <Widget>[
+        const SliverAppBar(
+          floating: true,
+          flexibleSpace: PostHeader(),
+          toolbarHeight: 182,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => FirstPost(),
+            childCount: 4,
+          ),
+        )
+      ],
+    );
   }
 }
 
