@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project_from_figma/domain/repository/postRepository.dart';
 import 'package:project_from_figma/gen/assets.gen.dart';
+
+import 'data/postAPI.dart';
+import 'domain/emptity/post.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
       ),
@@ -30,6 +35,10 @@ class MyHomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           titleSpacing: 0,
+          title: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text('Community'),
+          ),
           titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w500,
@@ -50,10 +59,6 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
           ],
-          title: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text('Community'),
-          ),
           bottom: const TabBar(
             labelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             labelColor: Color.fromRGBO(14, 19, 24, 1),
@@ -62,7 +67,7 @@ class MyHomePage extends StatelessWidget {
             dividerColor: Color.fromRGBO(214, 214, 214, 1),
             unselectedLabelColor: Color.fromRGBO(115, 116, 123, 1),
             isScrollable: true,
-            padding: EdgeInsets.only(right: 200),
+            padding: EdgeInsets.only(right: 220),
             tabs: <Widget>[
               Tab(
                 height: 44,
@@ -93,7 +98,7 @@ class HeaderOfExplore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 375,
+      width: 565,
       height: 104,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,10 +123,8 @@ class HeaderOfExplore extends StatelessWidget {
                 TagCard(tagName: '#PlayToEarn'),
                 TagCard(tagName: '#Defi'),
                 TagCard(tagName: '#TradeMarket'),
-                TagCard(tagName: '#Trading'),
-                TagCard(tagName: '#PlayToEarn'),
-                TagCard(tagName: '#Defi'),
-                TagCard(tagName: '#TradeMarket'),
+                TagCard(tagName: '#Music'),
+                TagCard(tagName: '#Market'),
               ],
             ),
           ),
@@ -150,7 +153,7 @@ class UnderHeaderOfExplore extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: "What's goind on?",
+                hintText: "What's going on?",
               ),
             ),
           ),
@@ -167,66 +170,59 @@ class NameForPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 24, 0),
-      child: SizedBox(
-        width: 320,
-        height: 40,
-        child: Row(
-          children: [
-            Stack(
-              children: <Widget>[
-                Assets.images.avatar40x40.image(),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Assets.icons.iconOnline.svg(),
-                )
-              ],
-            ),
-            SizedBox(width: 8, height: 40),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                      child: Text(
-                        'Felix One',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(14, 19, 24, 1),
-                        ),
-                      ),
+      child: Row(
+        children: [
+          Stack(
+            children: <Widget>[
+              Assets.images.avatar40x40.image(),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Assets.icons.iconOnline.svg(),
+              )
+            ],
+          ),
+          SizedBox(width: 8, height: 40),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Felix One',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(14, 19, 24, 1),
                     ),
-                    SizedBox(width: 4, height: 20),
-                    Assets.icons.iconCorrect.svg(),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '3 min ago',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(115, 116, 123, 1),
-                      ),
+                  ),
+                  SizedBox(width: 4, height: 20),
+                  Assets.icons.iconCorrect.svg(),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    '3 min ago',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(115, 116, 123, 1),
                     ),
-                    SizedBox(width: 4, height: 20),
-                    Assets.icons.iconDot.svg(),
-                    SizedBox(width: 4.67, height: 20),
-                    Assets.icons.iconWorld.svg(),
-                    SizedBox(width: 6.17, height: 20),
-                    Assets.icons.iconDropdown.svg(),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+                  ),
+                  SizedBox(width: 4, height: 20),
+                  Assets.icons.iconDot.svg(),
+                  SizedBox(width: 4.67, height: 20),
+                  Assets.icons.iconWorld.svg(),
+                  SizedBox(width: 6.17, height: 20),
+                  Assets.icons.iconDropdown.svg(),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -314,54 +310,54 @@ class BottomPostBar extends StatelessWidget {
   }
 }
 
-class FirstPost extends StatelessWidget {
-  const FirstPost({super.key});
+class ItemPost extends StatelessWidget {
+  const ItemPost({super.key, required this.post});
+
+  final Post post;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        SizedBox(
-          width: 360,
-          child: Column(
-            children: [
-              NameForPost(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 1, 12),
-                child: SizedBox(
-                  width: 343,
-                  height: 120,
-                  child: Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text:
-                              "The beast is back in town 🔥 In NY from May 23-28."
-                              "🚀 There are few tickets left, so hurry up!\nTickets:",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(14, 19, 24, 1),
-                          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            NameForPost(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 1, 12),
+              child: SizedBox(
+                width: 343,
+                height: 120,
+                child: Text.rich(
+                  TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text:
+                            "The beast is back in town 🔥 In NY from May 23-28."
+                            "🚀 There are few tickets left, so hurry up!\nTickets:",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromRGBO(14, 19, 24, 1),
                         ),
-                        TextSpan(
-                          text:
-                              "\r https://tradersoftheyear.com/conference_may2021",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(129, 180, 0, 1),
-                          ),
+                      ),
+                      TextSpan(
+                        text:
+                            "\r https://tradersoftheyear.com/conference_may2021",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromRGBO(129, 180, 0, 1),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Assets.images.imagePost1.image(),
-              BottomPostBar(),
-            ],
-          ),
+            ),
+            Assets.images.imagePost1.image(),
+            BottomPostBar(),
+          ],
         ),
         Positioned(
           right: 18.5,
@@ -429,17 +425,47 @@ class SecondPost extends StatelessWidget {
   }
 }
 
-class ViewTabExplore extends StatelessWidget {
+class ViewTabExplore extends StatefulWidget {
   const ViewTabExplore({super.key});
 
   @override
+  State<ViewTabExplore> createState() => _ViewTabExploreState();
+}
+
+class _ViewTabExploreState extends State<ViewTabExplore> {
+  late final Future<List<Post>> post;
+
+  @override
+  void initState() {
+    super.initState();
+    final postRepository = PostRepository(PostAPI());
+    post = postRepository.getPost();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        PostHeader(),
-        FirstPost(),
-        MyDivider(),
-        SecondPost(),
+    return CustomScrollView(
+      slivers: <Widget>[
+        const SliverAppBar(
+          floating: true,
+          flexibleSpace: PostHeader(),
+          toolbarHeight: 182,
+        ),
+        FutureBuilder<List<Post>>(
+            future: post,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => ItemPost(
+                      post: snapshot.requireData[index],
+                    ),
+                    childCount: snapshot.requireData.length,
+                  ),
+                );
+              }
+              return SliverToBoxAdapter(child: SizedBox());
+            })
       ],
     );
   }
@@ -467,19 +493,11 @@ class ViewTabFallowing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        const SliverAppBar(
-          floating: true,
-          flexibleSpace: PostHeader(),
-          toolbarHeight: 182,
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => FirstPost(),
-            childCount: 4,
-          ),
-        )
+    return Column(
+      children: [
+        PostHeader(),
+        MyDivider(),
+        SecondPost(),
       ],
     );
   }
@@ -544,7 +562,6 @@ class MyBottomNavigationBar extends StatelessWidget {
     );
 
     return SizedBox(
-      width: 360,
       height: 56,
       child: Column(
         children: [
